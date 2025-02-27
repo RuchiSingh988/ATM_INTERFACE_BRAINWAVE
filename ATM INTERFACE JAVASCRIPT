@@ -1,0 +1,56 @@
+let accounts = {
+    "1234": { pin: "1111", balance: 1000 },
+    "5678": { pin: "2222", balance: 500 }
+};
+
+let currentAccount = null;
+
+function authenticate() {
+    let accountNumber = document.getElementById("accountNumber").value;
+    let pin = document.getElementById("pin").value;
+
+    if (accounts[accountNumber] && accounts[accountNumber].pin === pin) {
+        currentAccount = accountNumber;
+        document.getElementById("login-section").style.display = "none";
+        document.getElementById("atm-menu").style.display = "block";
+        updateBalance();
+    } else {
+        alert("Invalid account number or PIN!");
+    }
+}
+
+function updateBalance() {
+    document.getElementById("balance").innerText = "Balance: $" + accounts[currentAccount].balance;
+}
+
+function checkBalance() {
+    alert("Your current balance is: $" + accounts[currentAccount].balance);
+}
+
+function depositMoney() {
+    let amount = parseFloat(prompt("Enter deposit amount:"));
+    if (amount > 0) {
+        accounts[currentAccount].balance += amount;
+        updateBalance();
+        alert("Deposit successful!");
+    } else {
+        alert("Invalid deposit amount.");
+    }
+}
+
+function withdrawMoney() {
+    let amount = parseFloat(prompt("Enter withdrawal amount:"));
+    if (amount > 0 && amount <= accounts[currentAccount].balance) {
+        accounts[currentAccount].balance -= amount;
+        updateBalance();
+        alert("Withdrawal successful!");
+    } else {
+        alert("Insufficient funds or invalid amount.");
+    }
+}
+
+function logout() {
+    currentAccount = null;
+    document.getElementById("atm-menu").style.display = "none";
+    document.getElementById("login-section").style.display = "block";
+}
