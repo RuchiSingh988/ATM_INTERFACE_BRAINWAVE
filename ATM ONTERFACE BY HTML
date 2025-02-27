@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>ATM Interface</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <div class="atm-container">
+        <h2>ATM Machine</h2>
+        <div id="login-section">
+            <label>Enter Account Number:</label>
+            <input type="text" id="accountNumber">
+            <label>Enter PIN:</label>
+            <input type="password" id="pin">
+            <button onclick="authenticate()">Login</button>
+        </div>
+
+        <div id="atm-menu" style="display: none;">
+            <h3>Welcome to ATM</h3>
+            <p id="balance">Balance: $1000</p>
+            <button onclick="checkBalance()">Check Balance</button>
+            <button onclick="depositMoney()">Deposit</button>
+            <button onclick="withdrawMoney()">Withdraw</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+    <script src="1.js"></script>
+</body>
+</html>
+
+
+
+
+def add_user(self, account_number, pin):
+        """Method to add a user to the system"""
+        self.users[account_number] = pin
